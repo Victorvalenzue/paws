@@ -1,0 +1,57 @@
+@import '../../../theme/dev-variables.scss';
+@import '../../../theme/mixins.scss';
+
+.scroll-content {
+  height: 0;
+  opacity: 0;
+  margin-top: pxToRem(90);
+  transition: margin-top 0.5s;
+  transition: opacity 1s;
+  max-width: pxToRem(1200);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: pxToRem(200);
+  background-position-x: pxToRem(-64);
+
+  @include media-medium {
+    background-position-y: pxToRem(170);
+  }
+
+  @include media-xlarge {
+    margin: 0 auto;
+    background-position-x: pxToRem(0);
+  }
+}
+
+.visible {
+  opacity: 1;
+  margin-top: pxToRem(0);
+
+  &.height {
+    height: 100%;
+    min-height: 78vh;
+
+    @include media-medium {
+      min-height: 80vh;
+    }
+
+    @include media-xlarge {
+      min-height: 80vh;
+    }
+  }
+
+  &.scroll-content {
+    padding: pxToRem(5);
+    padding-bottom: pxToRem(80);
+
+    @include media-medium {
+      padding-bottom: pxToRem(16);
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .scroll-content {
+    background-image: none !important;
+  }
+}

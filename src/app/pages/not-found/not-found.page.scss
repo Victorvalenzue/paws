@@ -1,0 +1,33 @@
+@import '../../../theme/mixins.scss';
+@import '../../../theme/functions.scss';
+
+.not-found-content {
+  text-align: center;
+}
+
+.not-found-title {
+  @include display-medium;
+  margin-bottom: pxToRem(8);
+
+  @include media-medium {
+    margin-bottom: pxToRem(24);
+  }
+}
+
+.not-found-button {
+  margin-top: pxToRem(16);
+  text-align: start;
+
+  @include media-medium {
+    text-align: center;
+  }
+}
+
+.not-found-image {
+  max-width: pxToRem(140);
+  margin: pxToRem(16) auto;
+
+  @include media-medium {
+    margin: pxToRem(36) auto;
+  }
+}

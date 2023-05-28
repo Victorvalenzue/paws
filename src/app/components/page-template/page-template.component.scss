@@ -1,0 +1,8 @@
+@import "../../../theme/dev-variables.scss";
+@import "../../../theme/mixins.scss";
+
+.scroll-content {
+  margin: pxToRem(4);
+  padding-top: pxToRem(4);
+  padding-bottom: pxToRem(120);
+}

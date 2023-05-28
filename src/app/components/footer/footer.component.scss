@@ -1,0 +1,13 @@
+@import "../../../theme/mixins.scss";
+
+.footer-container {
+  @include body-small;
+  padding: pxToRem(16);
+  text-align: center;
+  max-width: pxToRem(1200);
+  margin: 0 auto;
+
+  @include media-medium {
+    padding-top: pxToRem(32);
+  }
+}

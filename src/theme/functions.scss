@@ -1,0 +1,20 @@
+@import './dev-variables.scss';
+
+$base-size: $size-base;
+
+@function pxToRem($target, $context: $base-size) {
+  @return ($target / $context) * 1rem;
+}
+
+@function pxToRemGroup($top, $right, $bottom, $left, $context: $base-size) {
+  $top: ($top / $context) * 1rem;
+  $right: ($right / $context) * 1rem;
+  $bottom: ($bottom / $context) * 1rem;
+  $left: ($left / $context) * 1rem;
+
+  @return ($top $right $bottom $left);
+}
+
+@function addColorOpacity($hex, $opacity: 1) {
+  @return rgba($hex, $opacity);
+}

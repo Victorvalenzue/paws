@@ -1,0 +1,15 @@
+<app-header [information]="headerInformation"></app-header>
+<ion-content>
+  <app-layout [visible]="loaded">
+    <div class="not-found-content">
+      <ion-img class="not-found-image" [src]="logo"></ion-img>
+      <ion-text color="dark">
+        <h1 class="not-found-title">PAGINA <b>NO ENCONTRADA</b></h1>
+      </ion-text>
+      <ion-button shape="round" fill="outline" class="not-found-button" (click)="gotoHome()"
+        >Volver a inicio
+      </ion-button>
+    </div>
+  </app-layout>
+</ion-content>
+<app-footer complement="Paws"></app-footer>

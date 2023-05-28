@@ -1,0 +1,69 @@
+<ion-button
+  *ngIf="button"
+  class="min-button"
+  [color]="uploaded ? 'primary' : 'dark'"
+  fill="outline"
+  shape="round"
+  size="small"
+  [disabled]="disabled"
+  (click)="inputFile.click()"
+>
+  <ion-spinner
+    *ngIf="working"
+    color="primary"
+    name="crescent"
+    class="spinner"
+  ></ion-spinner>
+  <span *ngIf="!working">
+    {{
+      uploaded
+        ? name.length > 10
+          ? name.substring(0, 10) + "..."
+          : name
+        : "Subir Documento"
+    }}
+  </span>
+</ion-button>
+
+<ion-fab *ngIf="fab" vertical="center" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="inputFile.click()">
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<div *ngIf="icon">
+  <ion-button
+    shape="round"
+    *ngIf="!uploaded && !working"
+    fill="outline"
+    slot="end"
+    (click)="inputFile.click()"
+    ><ion-icon name="arrow-up-outline"></ion-icon
+  ></ion-button>
+
+  <ion-button
+    shape="round"
+    *ngIf="!working && uploaded"
+    slot="end"
+    (click)="inputFile.click()"
+    ><ion-icon name="checkmark-outline"></ion-icon
+  ></ion-button>
+
+  <ion-spinner
+    *ngIf="working"
+    color="primary"
+    name="crescent"
+    class="spinner"
+  ></ion-spinner>
+</div>
+
+<input
+  #inputFile
+  accept="{{ types }}"
+  type="file"
+  name="..."
+  style="display: none"
+  (click)="reset()"
+  (change)="uploadFile($event)"
+  [disabled]="disabled"
+/>

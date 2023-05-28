@@ -1,0 +1,10 @@
+@import "../../../theme/mixins.scss";
+@import "../../../theme/functions.scss";
+
+.spinner {
+  padding: pxToRem(6);
+}
+
+.min-button {
+  min-width: pxToRem(120);
+}

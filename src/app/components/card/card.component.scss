@@ -1,0 +1,121 @@
+@import '../../../theme/mixins.scss';
+@import '../../../theme/functions.scss';
+
+.rounded-card {
+  padding: pxToRem(16);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  // @include media-medium {
+  //   min-height: pxToRem(243);
+  // }
+}
+
+.default {
+  background-color: var(--ion-card-background);
+}
+
+.light {
+  background-color: var(--ion-color-light);
+}
+
+.orange {
+  background-color: #fbab7e;
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+}
+
+.fire {
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+}
+
+.green {
+  background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
+}
+
+.glass {
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+}
+
+.obscure {
+  background-color: #dcd9d4;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%),
+    radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.5) 50%);
+  background-blend-mode: soft-light, screen;
+}
+
+.cute-blue {
+  background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
+}
+
+.pamela {
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
+  @include dark {
+    background-image: linear-gradient(135deg, #7b798c 0%, #36445b 100%);
+  }
+}
+
+.love {
+  background-image: linear-gradient(to top, #dad4ec 0%, #dad4ec 1%, #f3e7e9 100%);
+}
+
+.young {
+  background-image: linear-gradient(-225deg, #5d9fff 0%, #b8dcff 48%, #6bbbff 100%);
+
+  @include dark {
+    background-image: linear-gradient(-225deg, #1f56a9 0%, #3f2991 48%, #195a93 100%);
+  }
+}
+
+.card-title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-overtitle {
+  @include title-small;
+}
+
+.card-title {
+  @include title-medium;
+}
+
+.card-body-section {
+  margin-top: pxToRem(16);
+}
+
+.card-body {
+  @include body-medium;
+}
+
+.card-footer-section {
+  margin-top: pxToRem(16);
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-body-extra-section {
+  margin-top: pxToRem(16);
+}
+
+.card-badge {
+  font-size: pxToRem($font-size-body-xlarge);
+  margin-right: pxToRem(6);
+}
+
+.title-right-section {
+  display: flex;
+  align-items: center;
+}
+
+.card-wrapper {
+  margin-bottom: pxToRem(16);
+  border-radius: pxToRem(10);
+  @include box-shadow-large;
+}
+
+.bordered {
+  border: pxToRem(1) solid var(--ion-color-light);
+}

@@ -1,0 +1,19 @@
+<ion-card tappable [class.ion-activatable]="tapable" class="card-wrapper">
+  <ion-card-header [class]="headerClasses">
+    <ion-card-subtitle class="tab-card-subtitle">
+      <ion-text color="dark">
+        <span class="card-body">{{ subtitle }}</span>
+      </ion-text>
+    </ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content class="tab-card-content">
+    <div class="tab-card-body-content">
+      <div class="content-left-side">
+        <ng-content select="[content-left-side]"></ng-content>
+      </div>
+      <div class="content-right-side">
+        <ng-content select="[content-right-side]"></ng-content>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>

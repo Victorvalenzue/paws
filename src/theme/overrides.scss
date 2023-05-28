@@ -1,0 +1,221 @@
+@import './dev-variables.scss';
+@import './functions.scss';
+@import './mixins.scss';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--ion-background-color);
+}
+
+form {
+  max-width: 100%;
+
+  // @include media-medium {
+  //   max-width: 70%;
+  // }
+}
+
+/** ionic components **/
+ion-alert {
+  --min-width: 80% !important;
+
+  @include media-medium {
+    --min-width: 400px !important;
+  }
+
+  .alert-radio-label {
+    font-weight: $font-weight-bold;
+  }
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+}
+
+ion-button {
+  margin: 0;
+  font-weight: $font-weight-bold;
+}
+
+ion-card {
+  // max-width: 95%;
+  border-radius: pxToRem(8);
+  margin: pxToRem(16) auto;
+}
+
+ion-label {
+  font-weight: $font-weight-bold;
+}
+
+ion-grid,
+ion-col {
+  padding: 0;
+}
+
+form {
+  width: 100%;
+}
+
+input,
+ion-datetime,
+ion-select {
+  margin-top: pxToRem(8);
+  padding-left: pxToRem(10) !important;
+  border: pxToRem(1) solid var(--ion-color-medium) !important;
+  border-radius: pxToRem($border-radius-small) !important;
+
+  &:focus {
+    border: pxToRem(2) solid var(--ion-color-primary) !important;
+  }
+}
+
+ion-select {
+  padding-right: pxToRem(10) !important;
+
+  &.select-expanded {
+    border: pxToRem(2) solid var(--ion-color-primary) !important;
+  }
+}
+
+.alert-input {
+  padding-right: pxToRem(10) !important;
+}
+
+ion-label {
+  text-align: start;
+}
+
+ion-toolbar {
+  --background: transparent;
+  // padding: pxToRem(12) pxToRem(16);
+}
+
+ion-slide {
+  width: 100%;
+  flex-direction: column;
+}
+
+ion-slides {
+  padding-bottom: pxToRem(96) !important;
+}
+
+.modal-wrapper {
+  min-height: pxToRem(516) !important;
+}
+
+.modal-wrapper.sc-ion-modal-md,
+.modal-shadow.sc-ion-modal-md {
+  border-radius: var(--border-radius);
+
+  @include media-medium {
+    border-radius: pxToRem($border-radius);
+  }
+}
+
+.alert-primary-action {
+  color: var(--ion-color-success) !important;
+  border: pxToRem(2) solid var(--ion-color-success) !important;
+
+  span {
+    font-weight: $font-weight-bold;
+  }
+}
+
+.alert-secondary-action {
+  color: var(--ion-color-warning) !important;
+  border: pxToRem(1) solid var(--ion-color-warning) !important;
+}
+
+ion-modal.my-custom-class {
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+
+  .modal-wrapper {
+    max-width: 85% !important;
+    max-height: 50% !important;
+    border-radius: pxToRem(12);
+
+    @include media-medium {
+      max-width: 30% !important;
+      max-height: 50% !important;
+    }
+
+    ion-page {
+      justify-content: flex-start;
+    }
+  }
+}
+
+.custom-loading {
+  // --background: #fff;
+  --spinner-color: var(--ion-color-primary);
+  color: var(--ion-color-dark);
+
+  .spinner-circular {
+    color: var(--ion-color-primary);
+  }
+}
+
+/** custom globals **/
+.form-element {
+  margin-top: pxToRem(16);
+  text-align: start;
+}
+
+.error-text {
+  @include body-small;
+  margin-top: pxToRem(8);
+  text-align: left;
+}
+
+.multi-field {
+  display: flex;
+}
+
+.small-select {
+  max-width: fit-content;
+  margin-right: pxToRem(8);
+}
+
+.small-input {
+  width: pxToRem(120);
+}
+
+.element-label {
+  @include body-medium;
+  font-weight: $font-weight-semi-bold;
+}
+
+.center-row {
+  justify-content: center;
+  align-items: center;
+}
+
+.action-custom-end {
+  justify-content: flex-end !important;
+}
+
+.action-custom-start {
+  justify-content: flex-start !important;
+}
+
+.searchbar-input {
+  padding-left: pxToRem(30) !important;
+}

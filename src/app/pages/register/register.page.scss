@@ -1,0 +1,58 @@
+@import "../../../theme/mixins.scss";
+@import "../../../theme/functions.scss";
+
+.register-header {
+  text-align: center;
+}
+
+.register-title {
+  @include display-medium;
+  margin-bottom: pxToRem(8);
+}
+
+.register-subtitle {
+  @include title-medium;
+}
+
+.register-content {
+  margin-top: pxToRem(48);
+
+  @include media-medium {
+    margin-top: pxToRem(32);
+  }
+}
+
+.register-row {
+  justify-content: center;
+  align-items: center;
+}
+
+.register-button {
+  margin-top: pxToRem(24);
+
+  @include media-medium {
+    margin-top: pxToRem(16);
+  }
+}
+
+.back-button {
+  margin-top: pxToRem(8);
+
+  @include media-medium {
+    margin-top: pxToRem(12);
+  }
+}
+
+.form-element {
+  margin-top: pxToRem(8);
+}
+
+.image-section {
+  margin: pxToRem(20) auto;
+  max-width: pxToRem(60);
+
+  @include media-medium {
+    max-width: pxToRem(120);
+    margin: pxToRem(40) auto;
+  }
+}

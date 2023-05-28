@@ -1,0 +1,16 @@
+<ion-card *ngFor="let card of cards" tappable [class.visible]="visible" class="skeleton-card">
+  <ion-item lines="none" style="--background: none">
+    <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+  </ion-item>
+
+  <ion-card-content>
+    <ion-item lines="none" style="--background: none; margin-left: -16px;">
+      <ion-label class="ion-text-wrap">
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        <ion-text>
+          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,158 @@
+@import "./dev-variables.scss";
+@import "./functions.scss";
+
+@mixin text(
+  $fontSize,
+  $lineHeight,
+  $fontSizeMobile,
+  $lineHeightMobile,
+  $fontWeight
+) {
+  font-size: pxToRem($fontSizeMobile);
+  line-height: pxToRem($lineHeightMobile);
+  font-weight: $fontWeight;
+
+  @include media-medium {
+    font-size: pxToRem($fontSize);
+    line-height: pxToRem($lineHeight);
+  }
+}
+
+@mixin display-xlarge {
+  @include text(
+    $font-size-display-xlarge,
+    $line-height-display-xlarge,
+    $font-size-display-xlarge-responsive,
+    $line-height-display-xlarge-responsive,
+    $font-weight-extra-bold
+  );
+}
+
+@mixin display-large {
+  @include text(
+    $font-size-display-large,
+    $line-height-display-large,
+    $font-size-display-large-responsive,
+    $line-height-display-large-responsive,
+    $font-weight-extra-bold
+  );
+}
+
+@mixin display-medium {
+  @include text(
+    $font-size-display-medium,
+    $line-height-display-medium,
+    $font-size-display-medium-responsive,
+    $line-height-display-medium-responsive,
+    $font-weight-extra-bold
+  );
+}
+
+@mixin display-small {
+  @include text(
+    $font-size-display-small,
+    $line-height-display-small,
+    $font-size-display-small-responsive,
+    $line-height-display-small-responsive,
+    $font-weight-extra-bold
+  );
+}
+
+@mixin title-large {
+  @include text(
+    $font-size-title-large,
+    $line-height-title-large,
+    $font-size-title-large-responsive,
+    $line-height-title-large-responsive,
+    $font-weight-bold
+  );
+}
+
+@mixin title-medium {
+  @include text(
+    $font-size-title-medium,
+    $line-height-title-medium,
+    $font-size-title-medium-responsive,
+    $line-height-title-medium-responsive,
+    $font-weight-bold
+  );
+}
+
+@mixin title-small {
+  @include text(
+    $font-size-title-small,
+    $line-height-title-small,
+    $font-size-title-small-responsive,
+    $line-height-title-small-responsive,
+    $font-weight-bold
+  );
+}
+
+@mixin body-xlarge {
+  @include text(
+    $font-size-body-xlarge,
+    $line-height-body-xlarge,
+    $font-size-body-xlarge-responsive,
+    $line-height-body-xlarge-responsive,
+    $font-weight-regular
+  );
+}
+
+@mixin body-large {
+  @include text(
+    $font-size-body-large,
+    $line-height-body-large,
+    $font-size-body-large-responsive,
+    $line-height-body-large-responsive,
+    $font-weight-regular
+  );
+}
+
+@mixin body-medium {
+  @include text(
+    $font-size-body-medium,
+    $line-height-body-medium,
+    $font-size-body-medium-responsive,
+    $line-height-body-medium-responsive,
+    $font-weight-regular
+  );
+}
+
+@mixin body-small {
+  font-size: pxToRem($font-size-body-small);
+  line-height: pxToRem($line-height-body-small);
+  font-weight: $font-weight-regular;
+}
+
+@mixin caption {
+  font-size: pxToRem($font-size-body-small-responsive);
+  line-height: pxToRem($line-height-body-small);
+  font-weight: $font-weight-regular;
+}
+
+@mixin section-title {
+  @include text(
+    $font-size-display-medium,
+    $line-height-display-medium,
+    $font-size-title-large,
+    $line-height-title-large,
+    $font-weight-extra-bold
+  );
+  color: $color-title;
+}
+
+@mixin header-subtitle-no-responsive {
+  font-size: pxToRem($font-size-body-large);
+  line-height: pxToRem($line-height-body-large);
+}
+
+@mixin header-subtitle {
+  font-size: pxToRem($font-size-body-large-responsive);
+  line-height: pxToRem($line-height-body-large-responsive);
+  font-weight: $font-weight-regular;
+  font-style: italic;
+
+  @include media-medium {
+    @include header-subtitle-no-responsive;
+  }
+}

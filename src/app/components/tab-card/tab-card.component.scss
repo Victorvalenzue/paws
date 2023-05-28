@@ -1,0 +1,100 @@
+@import '../../../theme/mixins.scss';
+@import '../../../theme/functions.scss';
+
+.card-wrapper {
+  padding-bottom: pxToRem(16);
+  margin-bottom: pxToRem(16);
+  border-radius: pxToRem(10);
+  @include box-shadow-medium;
+  background-color: #ffffff;
+  max-width: pxToRem(160);
+
+  @include media-medium {
+    max-width: none;
+  }
+}
+
+.tab-card-header {
+  padding: 0.2rem;
+  padding-left: 0.6rem;
+  padding-bottom: 0;
+  min-height: 2.5rem;
+  text-align: start;
+}
+
+.tab-card-subtitle {
+  font-weight: 600;
+  background: transparent;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.tab-card-content {
+  padding: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  margin-top: -0.9rem;
+}
+
+.tab-card-body-content {
+  padding: pxToRem(16);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  @include media-medium {
+    flex-direction: row;
+  }
+}
+
+.content-right-side {
+  margin-top: pxToRem(8);
+  @include media-medium {
+    margin-top: pxToRem(0);
+  }
+}
+
+.default {
+  background-color: var(--ion-card-background);
+}
+
+.light {
+  background-color: var(--ion-color-light);
+}
+
+.orange {
+  background-color: #fbab7e;
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+}
+
+.fire {
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(255, 209, 67, 1) 0%,
+    rgba(255, 145, 83, 1) 90%
+  );
+}
+
+.green {
+  background-color: #85ffbd;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+}
+
+.cute-blue {
+  background-color: #8bc6ec;
+  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+}
+
+.pamela {
+  background-color: #ffdee9;
+  background-image: linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
+}
+
+.love {
+  background-color: #a9c9ff;
+  background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
+}
+
+.young {
+  background-color: #b9f7ec;
+}

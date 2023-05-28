@@ -1,0 +1,54 @@
+@import './dev-variables.scss';
+@import './functions.scss';
+@import './typography.scss';
+@import './media-queries.scss';
+
+@mixin box-shadow-small {
+  box-shadow: 0 pxToRem(4) pxToRem(12) addColorOpacity($color-default-shadow, 0.07);
+}
+
+@mixin box-shadow-small-top {
+  box-shadow: 0 pxToRem(-4) pxToRem(12) addColorOpacity($color-default-shadow, 0.07);
+}
+
+@mixin box-shadow-medium {
+  box-shadow: 0 pxToRem(6) pxToRem(14) addColorOpacity($color-default-shadow, 0.07);
+}
+
+@mixin box-shadow-large {
+  box-shadow: 0 pxToRem(8) pxToRem(16) addColorOpacity($color-default-shadow, 0.18);
+}
+
+@mixin box-shadow-large-top {
+  box-shadow: 0 pxToRem(-10) pxToRem(16) addColorOpacity($color-default-shadow, 0.07);
+}
+
+@mixin transform-translateY($value) {
+  transform: translateY($value);
+  -webkit-transform: translateY($value);
+  -moz-transform: translateY($value);
+  -ms-transform: translateY($value);
+  -o-transform: translateY($value);
+}
+
+@mixin fade-in-translateY {
+  @keyframes fadeInTranslateY {
+    @content;
+  }
+
+  @-moz-keyframes fadeInTranslateY {
+    @content;
+  }
+
+  @-webkit-keyframes fadeInTranslateY {
+    @content;
+  }
+
+  @-o-keyframes fadeInTranslateY {
+    @content;
+  }
+
+  @-ms-keyframes fadeInTranslateY {
+    @content;
+  }
+}

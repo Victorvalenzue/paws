@@ -1,0 +1,27 @@
+@import '../../../theme/mixins.scss';
+
+.not-content {
+  text-align: center;
+}
+
+.not-image {
+  max-width: pxToRem(140);
+  margin: pxToRem(20) auto;
+}
+
+.not-title {
+  @include display-small;
+  margin: 0;
+  font-weight: $font-weight-extra-bold;
+}
+
+.not-subtitle {
+  @include title-medium;
+  margin-top: pxToRem(24);
+  margin: 0;
+  font-weight: $font-weight-regular;
+}
+
+.not-found-button {
+  margin-top: pxToRem(24);
+}

@@ -1,0 +1,87 @@
+$size-base: 16;
+
+/* ------- FONT STYLES --------- */
+
+$font-size: $size-base + px;
+$font-size-mobile: 14px;
+
+$font-weight-extra-light: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+$font-weight-black: 900;
+
+$font-size-display-xlarge: 56;
+$font-size-display-xlarge-responsive: 48;
+$font-size-display-large: 48;
+$font-size-display-large-responsive: 40;
+$font-size-display-medium: 40;
+$font-size-display-medium-responsive: 32;
+$font-size-display-small: 32;
+$font-size-display-small-responsive: 24;
+$font-size-title-large: 24;
+$font-size-title-large-responsive: 18;
+$font-size-title-medium: 18;
+$font-size-title-medium-responsive: 16;
+$font-size-title-small: 16;
+$font-size-title-small-responsive: 14;
+$font-size-body-xlarge: 24;
+$font-size-body-xlarge-responsive: 18;
+$font-size-body-large: 18;
+$font-size-body-large-responsive: 16;
+$font-size-body-medium: 16;
+$font-size-body-medium-responsive: 14;
+$font-size-body-small: 14;
+$font-size-body-small-responsive: 12;
+
+$line-height-display-xlarge: 64;
+$line-height-display-xlarge-responsive: 56;
+$line-height-display-large: 56;
+$line-height-display-large-responsive: 48;
+$line-height-display-medium: 48;
+$line-height-display-medium-responsive: 40;
+$line-height-display-small: 40;
+$line-height-display-small-responsive: 32;
+$line-height-title-large: 32;
+$line-height-title-large-responsive: 24;
+$line-height-title-medium: 24;
+$line-height-title-medium-responsive: 24;
+$line-height-title-small: 24;
+$line-height-title-small-responsive: 24;
+$line-height-body-xlarge: 32;
+$line-height-body-xlarge-responsive: 24;
+$line-height-body-large: 24;
+$line-height-body-large-responsive: 24;
+$line-height-body-medium: 24;
+$line-height-body-medium-responsive: 24;
+$line-height-body-small: 24;
+
+/* ------- SIZES -------*/
+
+$icon-size-small: 16;
+$icon-size-medium: 24;
+$icon-size-large: 32;
+$icon-size-xlarge: 40;
+
+$container-max-xlarge: 1140;
+$container-max-large: 960;
+$container-max-medium: 720;
+$container-max-small: 540;
+
+$border-radius-small: 8;
+$border-radius: 12;
+
+/* --------- COLORS ---------- */
+$primary: --ion-color-primary;
+
+$color-classic-bg: #ffffff;
+$color-alternative-bg: #f5f7fa;
+$color-default-hr: #878ca0;
+$color-default-border: #dde3ed;
+$color-default-shadow: #121954;
+$color-default-placeholder: #afbacc;
+$color-default-header-bg: #ebf5fb;
+$color-footer-shadow: #9df2d9;

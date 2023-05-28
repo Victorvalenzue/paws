@@ -1,0 +1,54 @@
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <app-layout>
+    <div class="home-header">
+      <div class="image-section">
+        <ion-img class="header-image" [src]="image"></ion-img>
+      </div>
+      <ion-text color="dark">
+        <h2 class="home-title">{{texts.title}}</h2>
+      </ion-text>
+      <ion-text color="medium">
+        <span class="home-subtitle">{{texts.subtitle}}</span>
+      </ion-text>
+    </div>
+    <div class="home-content">
+      <app-page-template>
+      <ion-grid>
+        <ion-row class="home-row">
+          <ng-container *ngIf="loading">
+            <ion-col size="12" size-md="12" size-lg="12" size-xl="12">
+              <app-skeleton-cards [visible]="loading" [quantity]="3">
+              </app-skeleton-cards>
+            </ion-col>
+          </ng-container>
+
+          <ng-container *ngIf="!loading">
+            <ion-col size="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-text color="dark">
+                <span class="home-subtitle">{{texts.contentText}}</span>
+              </ion-text>
+              <app-card *ngFor="let breed of breeds" [title]="breed.name"
+                [tapable]="false" [withBody]="true">
+                <div body-content style="display: flex;">
+                  <div style="margin-right: 16px;">
+                    <ion-text color="black">
+                      <span class="home-body">{{breed.description}}</span>
+                    </ion-text>
+                  </div>
+                  <div>
+                    <img [src]="breed.image" class="body-image" />
+                  </div>
+                </div>
+              </app-card>
+            </ion-col>
+          </ng-container>
+        </ion-row>
+      </ion-grid>
+      </app-page-template>
+    </div>
+  </app-layout>
+</ion-content>

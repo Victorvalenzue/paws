@@ -1,0 +1,8 @@
+.skeleton-card {
+  opacity: 0;
+  transition: opacity 1.2s;
+}
+
+.visible {
+  opacity: 1;
+}

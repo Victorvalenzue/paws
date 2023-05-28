@@ -1,0 +1,15 @@
+@import "../../../theme/mixins.scss";
+
+.menu-button-container {
+  margin-top: pxToRem(16);
+  margin-right: pxToRem(8);
+  text-align: end;
+
+  .ico {
+    font-size: pxToRem($icon-size-large);
+  }
+
+  @include media-medium {
+    display: none;
+  }
+}

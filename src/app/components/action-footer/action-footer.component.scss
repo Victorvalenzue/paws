@@ -1,0 +1,41 @@
+@import "../../../theme/mixins.scss";
+
+@include fade-in-translateY {
+  0% {
+    opacity: 0;
+    @include transform-translateY(pxToRem(80));
+  }
+  100% {
+    opacity: 1;
+    @include transform-translateY(0);
+  }
+}
+
+.action-footer {
+  z-index: 30;
+  width: 100%;
+  position: absolute;
+  bottom: pxToRem(24);
+
+  animation: fadeInTranslateY ease-in 1s;
+  -webkit-animation: fadeInTranslateY ease-in 1s;
+}
+
+.button-section {
+  width: 95%;
+  height: pxToRem(64);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--ion-color-light);
+  border-radius: pxToRem(16);
+  margin: 0 auto;
+  padding: 0 pxToRem(16);
+  border: pxToRem(1) solid $color-default-placeholder;
+
+  max-width: pxToRem(580);
+}
+
+.down-footer {
+  display: none;
+}

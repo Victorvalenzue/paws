@@ -1,0 +1,58 @@
+@import '../../../theme/mixins.scss';
+@import '../../../theme/functions.scss';
+
+.login-header {
+  text-align: center;
+}
+
+.login-title {
+  @include display-medium;
+  margin-bottom: pxToRem(8);
+}
+
+.login-subtitle {
+  @include title-medium;
+}
+
+.login-content {
+  margin-top: pxToRem(16);
+
+  @include media-medium {
+    margin-top: pxToRem(32);
+  }
+}
+
+.login-row {
+  justify-content: center;
+  align-items: center;
+}
+
+.login-button {
+  margin-top: pxToRem(24);
+
+  @include media-medium {
+    margin-top: pxToRem(16);
+  }
+}
+
+.register-button {
+  margin-top: pxToRem(8);
+
+  @include media-medium {
+    margin-top: pxToRem(12);
+  }
+}
+
+.form-element {
+  margin-top: pxToRem(8);
+}
+
+.image-section {
+  margin: pxToRem(20) auto;
+  max-width: pxToRem(60);
+
+  @include media-medium {
+    max-width: pxToRem(120);
+    margin: pxToRem(40) auto;
+  }
+}

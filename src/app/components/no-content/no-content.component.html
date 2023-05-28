@@ -1,0 +1,18 @@
+<div class="not-content" *ngIf="!!information">
+  <ion-img class="not-image" [src]="information.image"></ion-img>
+  <ion-text color="dark">
+    <h1 class="not-title">{{ information.title }}</h1>
+  </ion-text>
+  <ion-text color="dark">
+    <p class="not-subtitle">{{ information.subtitle }}</p>
+  </ion-text>
+  <ion-button
+    *ngIf="!!information.link"
+    shape="round"
+    fill="outline"
+    class="not-found-button"
+    (click)="goto(information.link)"
+  >
+    {{ information.linkText }}
+  </ion-button>
+</div>

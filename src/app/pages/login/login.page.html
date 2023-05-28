@@ -1,0 +1,50 @@
+<ion-content [fullscreen]="true">
+  <app-layout>
+    <div class="login-header">
+      <div class="image-section">
+        <ion-img class="header-image" [src]="image"></ion-img>
+      </div>
+      <ion-text color="dark">
+        <h2 class="login-title">{{texts.title}}</h2> 
+      </ion-text>
+      <ion-text color="medium">
+        <span class="login-subtitle">{{texts.subtitle}}</span>
+      </ion-text>
+    </div>
+    <div class="login-content" *ngIf="!!form">
+      <ion-grid>
+        <ion-row class="login-row">
+          <ion-col size="12" size-md="6" size-lg="5" size-xl="5">
+            <form [formGroup]="form" (ngSubmit)="signIn()">
+              <div class="form-element">
+                <ion-label position="floating">Email</ion-label>
+                <ion-input
+                  style="text-align: start"
+                  type="mail"
+                  formControlName="email"
+                  placeholder="Email"
+                ></ion-input>
+              </div>
+              <div class="form-element">
+                <ion-label position="floating">Contraseña</ion-label>
+                <ion-input
+                  style="text-align: start"
+                  formControlName="password"
+                  type="password"
+                  placeholder="Contraseña"
+                ></ion-input>
+              </div>
+
+              <ion-button class="login-button" [disabled]="form.invalid" type="submit" expand="block" (click)="signIn()">
+                {{texts.btnStart}}
+              </ion-button>
+              <ion-button class="register-button" expand="block" fill="outline" (click)="gotoRegisterPage()">
+                {{texts.btnOptional}}
+              </ion-button>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </app-layout>
+</ion-content>

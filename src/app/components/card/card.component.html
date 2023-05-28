@@ -1,0 +1,38 @@
+<ion-card tappable [class.ion-activatable]="tapable" [class]="wrapperClasses">
+  <div [class]="cardClasses">
+    <div (click)="clickCard()">
+      <div class="card-title-section">
+        <div class="title-left-section">
+          <ion-text color="medium" *ngIf="overtitle">
+            <h4 class="card-overtitle">{{ overtitle.toString() | uppercase }}</h4>
+          </ion-text>
+          <ion-text color="dark">
+            <h4 class="card-title">{{ title }}</h4>
+          </ion-text>
+          <ion-text color="dark" *ngIf="subtitle">
+            <p class="card-body">{{ subtitle }}</p>
+          </ion-text>
+        </div>
+        <div class="title-right-section">
+          <ng-content select="[title-right-side]"></ng-content>
+          <div>
+            <ion-badge class="card-badge" *ngIf="badge" slot="end" color="danger">{{ badge }}</ion-badge>
+          </div>
+        </div>
+      </div>
+      <div class="card-body-section" *ngIf="withBody">
+        <div class="card-body-extra-section">
+          <ng-content select="[body-content]"></ng-content>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer-section" *ngIf="withFooter">
+      <div class="left-section">
+        <ng-content select="[footer-left-side]"></ng-content>
+      </div>
+      <div class="right-section">
+        <ng-content select="[footer-right-side]"></ng-content>
+      </div>
+    </div>
+  </div>
+</ion-card>
