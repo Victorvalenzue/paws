@@ -228,6 +228,7 @@ export class AddPublicationPage implements OnInit {
       status: UserActivityStatus.PENDING,
       appointmentMetadata: appointmentDetails,
       adoptionMetadata: {
+        ownerId: this.userId,
         status: ApplicantStatus.PENDING,
         publicationId: pubId,
       }

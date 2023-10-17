@@ -310,6 +310,7 @@ export class HomePage implements OnInit, AfterViewInit {
     }
     await this.loadingService.dismiss();
     this.alertService.presentToast(successAlert);
+    this.loadActivities();
   }
 
   async addActivity(publication: Publication) {

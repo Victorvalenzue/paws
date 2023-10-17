@@ -15,6 +15,7 @@ export enum UserActivityStatus {
 }
 
 export interface AdoptionFormMetadata {
+  ownerId: string;
   publicationId: string;
   status: ApplicantStatus;
 }

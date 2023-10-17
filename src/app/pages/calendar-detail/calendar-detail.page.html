@@ -51,7 +51,10 @@
                     </ion-chip>
                   </div>
                 </div>
-                <div class="form-element" *ngIf="activity.type === types.ADOPTION">
+                <div
+                  class="form-element"
+                  *ngIf="activity.type === types.ADOPTION && userId === activity?.adoptionMetadata?.ownerId"
+                >
                   <ion-button
                     color="primary"
                     expand="block"

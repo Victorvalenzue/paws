@@ -36,6 +36,7 @@
           [withBorder]="true"
           [withFooter]="true"
           [authorURL]="activity.appointmentMetadata.profileImageURL || defaultProfile"
+          (action)="activityDetail(activity)"
         >
           <div body-content>
             <div class="description-section" style="margin-right: 16px; margin-bottom: 8px">
