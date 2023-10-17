@@ -1,0 +1,63 @@
+<app-header [information]="headerInformation" [withExtra]="true">
+  <div class="thumbnail-section">
+    <ion-button size="small" (click)="addPet()"> Registrar </ion-button>
+  </div>
+</app-header>
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Tira hacia abajo para refrescaar"
+      refreshingSpinner="circular"
+      refreshingText="Cargando..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <app-page-template>
+    <ng-container *ngIf="loading">
+      <ion-col size="12" size-md="12" size-lg="12" size-xl="12">
+        <app-skeleton-cards [visible]="loading" [quantity]="3"> </app-skeleton-cards>
+      </ion-col>
+    </ng-container>
+    <ng-container *ngIf="!loading">
+      <div class="main-content">
+        <app-no-content *ngIf="pets.length === 0" [information]="noPetsInfo" (action)="addPet()"></app-no-content>
+        <app-card
+          *ngFor="let pet of pets"
+          [title]="pet.profileId"
+          [subtitle]="pet.profileName"
+          [tapable]="true"
+          [withBody]="true"
+          [withBorder]="true"
+          [withFooter]="true"
+          [authorURL]="pet.profileImageURL || profileImage"
+        >
+          <div body-content>
+            <div style="margin-right: 16px; margin-bottom: 8px">
+              <ion-text color="black">
+                <span>{{pet.bio}}</span>
+              </ion-text>
+            </div>
+          </div>
+          <div footer-left-side>
+            <ion-toolbar>
+              <ion-chip color="medium">
+                <ion-icon name="calendar-outline" color="secondary"></ion-icon>
+                <ion-label>{{ pet.createdAt | date }}</ion-label>
+              </ion-chip>
+              <ion-chip color="medium">
+                <ion-icon [name]="pet.gender+'-outline'" color="secondary"></ion-icon>
+                <ion-label>{{ gender(pet.gender) }}</ion-label>
+              </ion-chip>
+            </ion-toolbar>
+          </div>
+        </app-card>
+      </div>
+    </ng-container>
+  </app-page-template>
+
+  <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="scrollHandler($event)">
+    <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Cargando..."> </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+</ion-content>

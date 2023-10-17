@@ -1,4 +1,4 @@
-<div class="not-content" *ngIf="!!information">
+<div class="not-content" *ngIf="!!information && !small">
   <ion-img class="not-image" [src]="information.image"></ion-img>
   <ion-text color="dark">
     <h1 class="not-title">{{ information.title }}</h1>
@@ -11,6 +11,34 @@
     shape="round"
     fill="outline"
     class="not-found-button"
+    (click)="goto(information.link)"
+  >
+    {{ information.linkText }}
+  </ion-button>
+    <ion-button
+    *ngIf="information.action"
+    shape="round"
+    fill="outline"
+    class="not-found-button"
+    (click)="doAction()"
+  >
+    {{ information.linkText }}
+  </ion-button>
+</div>
+<div class="not-content small" *ngIf="!!information && small">
+  <ion-img class="not-image small" [src]="information.image"></ion-img>
+  <ion-text color="dark">
+    <h1 class="not-title small">{{ information.title }}</h1>
+  </ion-text>
+  <ion-text color="dark">
+    <p class="not-subtitle">{{ information.subtitle }}</p>
+  </ion-text>
+  <ion-button
+    *ngIf="!!information.link"
+    shape="round"
+    fill="outline"
+    class="not-found-button small"
+    color="tertiary"
     (click)="goto(information.link)"
   >
     {{ information.linkText }}

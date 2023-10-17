@@ -1,54 +1,165 @@
+<app-header [information]="headerInformation" [withExtra]="true">
+  <div class="thumbnail-section">
+    <ion-icon slot="icon-only" name="notifications-outline" style="font-size: 36px" (click)="openNotifications()"></ion-icon>
+    <app-thumbnail-profile (click)="handleProfileModal()" [source]="profile?.profileImageURL || ''">
+    </app-thumbnail-profile>
+  </div>
+</app-header>
 <ion-content [fullscreen]="true">
   <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content>
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Tira hacia abajo para refrescaar"
+      refreshingSpinner="circular"
+      refreshingText="Cargando..."
+    >
     </ion-refresher-content>
   </ion-refresher>
-  <app-layout>
-    <div class="home-header">
-      <div class="image-section">
-        <ion-img class="header-image" [src]="image"></ion-img>
-      </div>
-      <ion-text color="dark">
-        <h2 class="home-title">{{texts.title}}</h2>
-      </ion-text>
-      <ion-text color="medium">
-        <span class="home-subtitle">{{texts.subtitle}}</span>
-      </ion-text>
-    </div>
-    <div class="home-content">
-      <app-page-template>
-      <ion-grid>
-        <ion-row class="home-row">
-          <ng-container *ngIf="loading">
-            <ion-col size="12" size-md="12" size-lg="12" size-xl="12">
-              <app-skeleton-cards [visible]="loading" [quantity]="3">
-              </app-skeleton-cards>
-            </ion-col>
-          </ng-container>
 
-          <ng-container *ngIf="!loading">
-            <ion-col size="12" size-md="12" size-lg="12" size-xl="12">
-              <ion-text color="dark">
-                <span class="home-subtitle">{{texts.contentText}}</span>
-              </ion-text>
-              <app-card *ngFor="let breed of breeds" [title]="breed.name"
-                [tapable]="false" [withBody]="true">
-                <div body-content style="display: flex;">
-                  <div style="margin-right: 16px;">
-                    <ion-text color="black">
-                      <span class="home-body">{{breed.description}}</span>
-                    </ion-text>
-                  </div>
-                  <div>
-                    <img [src]="breed.image" class="body-image" />
-                  </div>
+  <app-page-template>
+    <ng-container *ngIf="loading">
+      <ion-col size="12" size-md="12" size-lg="12" size-xl="12">
+        <app-skeleton-cards [visible]="loading" [quantity]="3"> </app-skeleton-cards>
+      </ion-col>
+    </ng-container>
+    <ng-container *ngIf="!loading">
+      <div class="main-content">
+        <app-no-content
+          *ngIf="activities.length === 0"
+          [information]="noActivitiesInfo"
+          [small]="true"
+        ></app-no-content>
+        <app-horizontal-scrolling class="width-fill">
+          <app-card
+            class="scrollable-child box"
+            *ngFor="let activity of activities"
+            [title]="activity.appointmentMetadata.profileId"
+            [subtitle]="activity.name"
+            [tapable]="true"
+            [withBody]="true"
+            [withBorder]="true"
+            [withFooter]="true"
+            [restricted]="true"
+            [authorURL]="activity.appointmentMetadata.profileImageURL || defaultProfile"
+            [cardClass]="'restricted'"
+          >
+            <div body-content style="text-align: center">
+              <div class="description-section">
+                <div style="text-align: left">
+                  <!-- <ion-text color="black">
+                    <span>{{activity.description}}</span>
+                  </ion-text> -->
+                  <ion-toolbar>
+                    <ion-chip color="medium">
+                      <ion-icon name="calendar-outline" color="secondary"></ion-icon>
+                      <ion-label>{{ activity.appointmentMetadata.date | date : 'medium' }}</ion-label>
+                    </ion-chip>
+                  </ion-toolbar>
+                  <ion-toolbar>
+                    <ion-chip [color]="getStatus(activity.status).color">
+                      <ion-icon
+                        [name]="getStatus(activity.status).image"
+                        [color]="getStatus(activity.status).color"
+                      ></ion-icon>
+                      <ion-label>{{ getStatus(activity.status).value }}</ion-label>
+                    </ion-chip>
+                  </ion-toolbar>
                 </div>
-              </app-card>
-            </ion-col>
-          </ng-container>
-        </ion-row>
-      </ion-grid>
-      </app-page-template>
-    </div>
-  </app-layout>
+                <div>
+                  <ion-img
+                    class="activity-image small"
+                    [src]="getImage(activity.appointmentMetadata.type) || defaultProfile"
+                  ></ion-img>
+                </div>
+              </div>
+            </div>
+            <div footer-full>
+              <ion-toolbar>
+                <ion-button color="secondary" expand="block" size="small" (click)="activityDetail(activity)">
+                  Ver detalle
+                </ion-button>
+              </ion-toolbar>
+            </div>
+          </app-card>
+        </app-horizontal-scrolling>
+      </div>
+
+      <div class="main-content">
+        <app-card
+          *ngFor="let pub of pubs"
+          [title]="pub.profileId"
+          [subtitle]="pub.type === 'ADOPTION' ? pub.title : pub.title"
+          [tapable]="false"
+          [withBody]="true"
+          [withBorder]="true"
+          [withFooter]="true"
+          [authorURL]="pub.profileImageURL"
+          [verified]="pub.verified"
+          [color]="pub.type === 'ADOPTION' ? 'love' : 'default'"
+        >
+          <div body-content>
+            <div style="margin-right: 16px; margin-bottom: 8px">
+              <ion-text color="black">
+                <span>{{pub.description}}</span>
+              </ion-text>
+            </div>
+            <ng-container *ngIf="pub.type === 'IMAGE' || pub.type === 'ADOPTION'">
+              <swiper-container #swiper [modules]="swiperModules" [pagination]="true">
+                <swiper-slide *ngFor="let iteratedImage of pub.content.images; let i = index">
+                  <app-image-with-extra
+                    [image]="iteratedImage"
+                    [title]="(i+1) + '/' + (pub.content.images?.length)"
+                    [subtitile]="getTags(pub.tags)"
+                  >
+                  </app-image-with-extra>
+                </swiper-slide>
+              </swiper-container>
+            </ng-container>
+
+            <ng-container *ngIf="pub.type === 'VIDEO' && pub.content.video">
+              <video autoplay muted controls preload="auto" class="width-fill" style="border-radius: 8px">
+                <source [src]="pub.content.video.url" type="video/mp4" poster="pub.content.video.poster" />
+                Your browser does not support the video tag.
+              </video>
+            </ng-container>
+          </div>
+          <div footer-full *ngIf="pub.type === 'ADOPTION'">
+            <ion-toolbar>
+              <ion-button color="tertiary" expand="block" size="small" (click)="tryToAdopt(pub)">
+                ¡Lo quiero!
+              </ion-button>
+            </ion-toolbar>
+          </div>
+          <div footer-right-side>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <!-- <ion-button (click)="setLike(pub.idField)">
+                  <ion-icon
+                    [name]="liked(pub.idField) ? 'heart' : 'heart-outline'"
+                    [color]="liked(pub.idField) ? 'primary' : 'dark'"
+                  ></ion-icon>
+                </ion-button> -->
+                <ion-button>
+                  <ion-icon name="chatbubbles-outline" color="dark"></ion-icon>
+                </ion-button>
+                <ion-button>
+                  <ion-icon name="share-outline" color="dark"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </div>
+        </app-card>
+        <app-no-content *ngIf="pubs.length === 0 || endReached" [information]="noPubsInfo"></app-no-content>
+      </div>
+    </ng-container>
+  </app-page-template>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="scrollHandler($event)">
+    <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Cargando..."> </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="addPublication()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

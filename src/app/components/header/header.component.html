@@ -1,27 +1,25 @@
 <ion-header>
-  <ion-toolbar>
-    <div class="header-content-background" *ngIf="!!information">
-      <div class="header-content">
-        <div class="image-section" *ngIf="!!information.image">
-          <ion-img class="header-image" [src]="information.image"></ion-img>
-        </div>
-        <div class="title-section">
-          <ion-text color="dark">
-            <h1 class="header-title">{{ information.title }}</h1>
-          </ion-text>
-        </div>
+  <div class="header-content-background" [class.with-border]="withBorder" *ngIf="!!information">
+    <div class="header-content">
+      <div class="image-section" *ngIf="!!information.image">
+        <ion-img class="header-image" [src]="information.image"></ion-img>
       </div>
-      <ion-text color="medium">
-        <p class="header-subtitle" *ngIf="!!information.subtitle">
-          {{ information.subtitle }}
-        </p>
-        <p class="header-subtitle" *ngIf="!information.subtitle">
-          {{ cordialDate() }}
-        </p>
-      </ion-text>
+      <div class="title-section">
+        <ion-text color="dark">
+          <h1 class="header-title">{{ information.title }}</h1>
+        </ion-text>
+      </div>
       <div class="extra-content" *ngIf="withExtra">
         <ng-content></ng-content>
       </div>
     </div>
-  </ion-toolbar>
+    <ion-text color="medium">
+      <p class="header-subtitle" *ngIf="!!information.subtitle">
+        {{ information.subtitle }}
+      </p>
+      <p class="header-subtitle" *ngIf="showDay">
+        {{ cordialDate() }}
+      </p>
+    </ion-text>
+  </div>
 </ion-header>

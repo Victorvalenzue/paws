@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'paws-2',
+  appId: 'com.vicdata.paws',
+  appName: 'paws',
   webDir: 'www',
   server: {
     androidScheme: 'https'

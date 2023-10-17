@@ -1,0 +1,84 @@
+<app-header [information]="headerInformation" [withExtra]="true"> </app-header>
+<ion-content [fullscreen]="true">
+  <app-searchbar (filterEvent)="onFilter($event)" (focusEvent)="onFocus()" (blurEvent)="onBlur()"> </app-searchbar>
+  <app-page-template>
+    <ng-container *ngIf="working">
+      <ion-col size="12" size-md="12" size-lg="12" size-xl="12">
+        <app-skeleton-cards [visible]="working" [quantity]="3"> </app-skeleton-cards>
+      </ion-col>
+    </ng-container>
+    <ng-container *ngIf="!working">
+      <div class="main-content">
+        <app-card
+          *ngFor="let pub of pubs"
+          [title]="pub.profileId"
+          [subtitle]="pub.type === 'ADOPTION' ? pub.title : pub.title"
+          [tapable]="false"
+          [withBody]="true"
+          [withBorder]="true"
+          [withFooter]="true"
+          [authorURL]="pub.profileImageURL"
+          [verified]="pub.verified"
+          [color]="pub.type === 'ADOPTION' ? 'love' : 'default'"
+        >
+          <div body-content>
+            <div style="margin-right: 16px; margin-bottom: 8px">
+              <ion-text color="black">
+                <span>{{pub.description}}</span>
+              </ion-text>
+            </div>
+            <ng-container *ngIf="pub.type === 'IMAGE' || pub.type === 'ADOPTION'">
+              <swiper-container #swiper [modules]="swiperModules" [pagination]="true">
+                <swiper-slide *ngFor="let iteratedImage of pub.content.images; let i = index">
+                  <app-image-with-extra
+                    [image]="iteratedImage"
+                    [title]="(i+1) + '/' + (pub.content.images?.length)"
+                    [subtitile]="getTags(pub.tags)"
+                  >
+                  </app-image-with-extra>
+                </swiper-slide>
+              </swiper-container>
+            </ng-container>
+
+            <ng-container *ngIf="pub.type === 'VIDEO' && pub.content.video">
+              <video autoplay muted controls preload="auto" class="width-fill" style="border-radius: 8px">
+                <source [src]="pub.content.video.url" type="video/mp4" poster="pub.content.video.poster" />
+                Your browser does not support the video tag.
+              </video>
+            </ng-container>
+          </div>
+          <div footer-full *ngIf="pub.type === 'ADOPTION'">
+            <ion-toolbar>
+              <ion-button color="tertiary" expand="block" size="small" (click)="tryToAdopt(pub)">
+                ¡Lo quiero!
+              </ion-button>
+            </ion-toolbar>
+          </div>
+          <div footer-right-side>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <!-- <ion-button (click)="setLike(pub.idField)">
+                  <ion-icon
+                    [name]="liked(pub.idField) ? 'heart' : 'heart-outline'"
+                    [color]="liked(pub.idField) ? 'primary' : 'dark'"
+                  ></ion-icon>
+                </ion-button> -->
+                <ion-button>
+                  <ion-icon name="chatbubbles-outline" color="dark"></ion-icon>
+                </ion-button>
+                <ion-button>
+                  <ion-icon name="share-outline" color="dark"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </div>
+        </app-card>
+        <app-no-content *ngIf="pubs.length === 0 || endReached" [information]="noPubsInfo"></app-no-content>
+      </div>
+    </ng-container>
+  </app-page-template>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="scrollHandler($event)">
+    <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Cargando..."> </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,24 @@
+@import '../../../theme/mixins.scss';
+@import '../../../theme/functions.scss';
+
+.dark-container {
+    position: absolute;
+    // background: var(--ion-color-dark);
+    background-color: rgba(27, 27, 29, 0.55);
+    padding: 2px 4px;
+    border-radius: 2px;
+    // opacity: 0.5;
+}
+
+.chip {
+    @include body-small;
+
+    border-radius: 8px 0px 8px 0px;
+}
+
+.subtitle {
+    text-align: left;
+    width: 40%;
+
+    @include body-small
+}

@@ -17,6 +17,15 @@
           <ion-col size="12" size-md="6" size-lg="5" size-xl="5">
             <form [formGroup]="form" (ngSubmit)="register()">
               <div class="form-element">
+                <ion-label position="floating">Nombre</ion-label>
+                <ion-input
+                  style="text-align: start"
+                  type="text"
+                  formControlName="name"
+                  placeholder="Nombre"
+                ></ion-input>
+              </div>
+              <div class="form-element">
                 <ion-label position="floating">Email</ion-label>
                 <ion-input
                   style="text-align: start"

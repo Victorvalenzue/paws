@@ -1,0 +1,66 @@
+@import "../../../theme/mixins.scss";
+@import "../../../theme/functions.scss";
+
+.profile_photo {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.profile_photo_img {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.simple-spinner {
+    width: pxToRem(80);
+    height: pxToRem(80);
+    margin-bottom: pxToRem(8);
+}
+
+.fame{
+    margin-left: pxToRem(16);
+    margin-bottom: pxToRem(8);
+
+    .name {
+        font-size: pxToRem($font-size-body-xlarge);
+    }
+}
+
+.not-found-content {
+    text-align: center;
+}
+
+.not-found-title {
+    @include display-medium;
+    margin-bottom: pxToRem(8);
+
+    @include media-medium {
+        margin-bottom: pxToRem(24);
+    }
+}
+
+.not-found-button {
+    margin-top: pxToRem(16);
+    text-align: start;
+
+    @include media-medium {
+        text-align: center;
+    }
+}
+
+.not-found-image {
+    max-width: pxToRem(140);
+    margin: pxToRem(16) auto;
+
+    @include media-medium {
+        margin: pxToRem(36) auto;
+    }
+}
+
+.profile-content{
+    padding-bottom: pxToRem(120);
+}

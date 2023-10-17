@@ -1,0 +1,22 @@
+<div style="display: flex; position: relative">
+  <div class="dark-container chip">
+    <ion-text color="light">
+      {{ title }}
+    </ion-text>
+  </div>
+
+  <app-expandable
+    [expanded]="expanded"
+    class="dark-container subtitle"
+    style="top: 0; right: 0; border-radius: 0px 8px 0px 8px;"
+    (click)="expanded = !expanded"
+  >
+    <div>
+      <ion-text color="light">
+        {{ !expanded ? (subtitile.length > 16 ? (subtitile | slice: 0 : 16) + '...' : subtitile) : subtitile }}
+      </ion-text>
+    </div>
+  </app-expandable>
+
+  <img style="border-radius: 8px;" [src]="image" />
+</div>

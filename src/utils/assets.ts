@@ -1,2 +1,15 @@
 export const COMPANY_LOGO = '../../../../assets/images/min-logo.png';
 export const SAD = '../../../../assets/images/sad.png';
+export const PROFILE = '../../../../assets/images/user.png';
+export const PET_PROFILE = '../../../../assets/images/default-pet-profile.png';
+export const EMPTY_DISH = '../../../../assets/images/empty-dish.png';
+export const PAW_LOCATION = '../../../../assets/images/paw-location.png';
+export const DOG_HOUSE = '../../../../assets/images/dog-house.png';
+export const GALLERY = '../../../../assets/images/gallery.png';
+export const CALENDAR = '../../../../assets/images/calendar.png';
+export const GROOMING = '../../../../assets/images/pet-grooming.png';
+export const RIDE = '../../../../assets/images/ride.png';
+export const SHOPPING = '../../../../assets/images/shopping.png';
+export const VETERINARY = '../../../../assets/images/veterinary.png';
+export const ADOPTION = '../../../../assets/images/adoption.png';
+export const NOTIFICATION = '../../../../assets/images/notification.png';

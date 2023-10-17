@@ -1,0 +1,77 @@
+<app-header [information]="headerInformation" [withExtra]="true">
+  <div class="thumbnail-section">
+    <ion-button size="small" (click)="addActivity()"> Nueva </ion-button>
+  </div>
+</app-header>
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Tira hacia abajo para refrescaar"
+      refreshingSpinner="circular"
+      refreshingText="Cargando..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <app-page-template>
+    <ng-container *ngIf="loading">
+      <ion-col size="12" size-md="12" size-lg="12" size-xl="12">
+        <app-skeleton-cards [visible]="loading" [quantity]="3"> </app-skeleton-cards>
+      </ion-col>
+    </ng-container>
+    <ng-container *ngIf="!loading">
+      <div class="main-content">
+        <app-no-content
+          *ngIf="activities.length === 0"
+          [information]="noInfo"
+          (action)="addActivity()"
+        ></app-no-content>
+        <app-card
+          *ngFor="let activity of activities"
+          [title]="activity.appointmentMetadata.profileId"
+          [subtitle]="activity.name"
+          [tapable]="true"
+          [withBody]="true"
+          [withBorder]="true"
+          [withFooter]="true"
+          [authorURL]="activity.appointmentMetadata.profileImageURL || defaultProfile"
+        >
+          <div body-content>
+            <div class="description-section" style="margin-right: 16px; margin-bottom: 8px">
+              <div>
+                <ion-text color="black">
+                  <span>{{activity.description}}</span>
+                </ion-text>
+                <ion-toolbar>
+                  <ion-chip [color]="getStatus(activity.status).color">
+                    <ion-icon
+                      [name]="getStatus(activity.status).image"
+                      [color]="getStatus(activity.status).color"
+                    ></ion-icon>
+                    <ion-label>{{ getStatus(activity.status).value }}</ion-label>
+                  </ion-chip>
+                  <ion-chip color="medium">
+                    <ion-icon name="calendar-outline" color="secondary"></ion-icon>
+                    <ion-label>{{ activity.appointmentMetadata.date | date : 'medium' }}</ion-label>
+                  </ion-chip>
+                </ion-toolbar>
+              </div>
+              <div>
+                <ion-img
+                  class="activity-image small"
+                  [src]="getImage(activity.appointmentMetadata.type) || defaultProfile"
+                ></ion-img>
+              </div>
+            </div>
+          </div>
+          <div footer-left-side></div>
+        </app-card>
+      </div>
+    </ng-container>
+  </app-page-template>
+
+  <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="scrollHandler($event)">
+    <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Cargando..."> </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+</ion-content>

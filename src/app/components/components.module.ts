@@ -15,6 +15,11 @@ import { TabCardComponent } from './tab-card/tab-card.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { PageTemplateComponent } from './page-template/page-template.component';
+import { ThumbnailProfileComponent } from './thumbnail-profile/thumbnail-profile.component';
+import { HorizontalScrollingComponent } from './horizontal-scrolling/ horizontal-scrolling.component';
+import { ImageWithExtraComponent } from './image-with-extra/image-with-extra.component';
+import { ExpandableComponent } from './expandable/expandable.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,11 @@ import { PageTemplateComponent } from './page-template/page-template.component';
     SkeletonCardsComponent,
     TabCardComponent,
     UploadFileComponent,
+    ThumbnailProfileComponent,
+    HorizontalScrollingComponent,
+    ImageWithExtraComponent,
+    ExpandableComponent,
+    SearchbarComponent,
   ],
   imports: [CommonModule, FormsModule, IonicModule, ReactiveFormsModule],
   exports: [
@@ -43,6 +53,11 @@ import { PageTemplateComponent } from './page-template/page-template.component';
     SkeletonCardsComponent,
     TabCardComponent,
     UploadFileComponent,
+    ThumbnailProfileComponent,
+    HorizontalScrollingComponent,
+    ImageWithExtraComponent,
+    ExpandableComponent,
+    SearchbarComponent,
   ],
 })
 export class ComponentsModule {}

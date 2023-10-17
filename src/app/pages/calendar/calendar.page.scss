@@ -1,0 +1,17 @@
+@import '../../../theme/mixins.scss';
+@import '../../../theme/functions.scss';
+
+.description-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.activity-image {
+    max-width: pxToRem(140);
+    margin: pxToRem(16) auto;
+
+    &.small {
+        max-width: pxToRem(60);
+        margin: pxToRem(4);
+    }
+}

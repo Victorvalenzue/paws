@@ -1,0 +1,104 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons collapse="true" slot="end">
+      <ion-button (click)="dismiss()">Cerrar</ion-button>
+    </ion-buttons>
+    <ion-title>Detalles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-page-template>
+    <div class="profile-content">
+      <ng-container *ngIf="working">
+        <div style="width: 100%; text-align: center; margin: 56px 0">
+          <ion-spinner class="simple-spinner" color="primary" name="crescent"> </ion-spinner>
+          <ion-text color="medium">
+            <p class="loading-subtitle">Por favor espere</p>
+          </ion-text>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!working; else Error">
+        <div class="register-content">
+          <ion-grid>
+            <ion-row class="register-row">
+              <ion-col size="12" size-md="6" size-lg="5" size-xl="5">
+                <div>
+                  <ion-img
+                    class="activity-image small"
+                    [src]="getImage(activity.appointmentMetadata.type) || calendarImage"
+                  ></ion-img>
+                </div>
+                <div style="text-align: left">
+                  <ion-text color="black">
+                    <h3>{{activity.name}}</h3>
+                  </ion-text>
+                  <ion-text color="medium">
+                    <p>{{activity.description}}</p>
+                  </ion-text>
+                  <div class="form-element">
+                    <ion-chip color="medium">
+                      <ion-icon name="calendar-outline" color="secondary"></ion-icon>
+                      <ion-label>{{ activity.appointmentMetadata.date | date : 'medium' }}</ion-label>
+                    </ion-chip>
+
+                    <ion-chip [color]="getStatus(activity.status).color">
+                      <ion-icon
+                        [name]="getStatus(activity.status).image"
+                        [color]="getStatus(activity.status).color"
+                      ></ion-icon>
+                      <ion-label>{{ getStatus(activity.status).value }}</ion-label>
+                    </ion-chip>
+                  </div>
+                </div>
+                <div class="form-element" *ngIf="activity.type === types.ADOPTION">
+                  <ion-button
+                    color="primary"
+                    expand="block"
+                    (click)="openUsers(activity.adoptionMetadata.publicationId)"
+                    [disabled]="activity.status !== statuses.PENDING"
+                  >
+                    Ver postulantes
+                  </ion-button>
+                </div>
+                <div class="form-element" *ngIf="activity.type === types.APPOINTMENT">
+                  <ion-button
+                    color="primary"
+                    expand="block"
+                    (click)="changeStatus(statuses.COMPLETED)"
+                    [disabled]="activity.status !== statuses.PENDING"
+                  >
+                    Confirmar
+                  </ion-button>
+                </div>
+                <div class="form-element">
+                  <ion-button
+                    color="primary"
+                    expand="block"
+                    size="small"
+                    fill="outline"
+                    (click)="changeStatus(statuses.CANCELLED)"
+                    [disabled]="activity.status === statuses.CANCELLED"
+                  >
+                    Cancelar
+                  </ion-button>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ng-container>
+      <ng-template #Error>
+        <div *ngIf="!working && error" class="not-found-content">
+          <ion-img class="not-found-image" [src]="sadImage"></ion-img>
+          <ion-text color="dark">
+            <h1 class="not-found-title">Ha ocurrido un error inesperado</h1>
+          </ion-text>
+        </div>
+      </ng-template>
+    </div>
+  </app-page-template>
+</ion-content>
+<app-action-footer [static]="true" [end]="true" [withBorder]="false">
+  <ion-button color="primary" (click)="dismiss()" fill="outline">Cerrar</ion-button>
+</app-action-footer>

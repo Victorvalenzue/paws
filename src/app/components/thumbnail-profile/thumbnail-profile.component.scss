@@ -1,0 +1,27 @@
+@import "../../../theme/dev-variables.scss";
+@import "../../../theme/mixins.scss";
+
+.thumbimg {
+    object-fit: cover;
+    border-radius: 50%;
+    filter: invert(0);
+
+    width: pxToRem(36);
+    height: pxToRem(36);
+    
+    // @include media-medium {
+    //     width: pxToRem(52);
+    //     height: pxToRem(52);
+    // }
+
+    &.small {
+        width: pxToRem(24);
+        height: pxToRem(24);
+    }
+
+    &.dark {
+        @media (prefers-color-scheme: dark) {
+            filter: invert(1);
+        }
+    }
+}

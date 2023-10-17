@@ -16,6 +16,10 @@ export class HeaderComponent implements OnInit {
   information: HeaderInformation | undefined;
   @Input()
   withExtra = false;
+  @Input()
+  withBorder = false;
+  @Input()
+  showDay = false;
 
   constructor() {}
 
@@ -36,7 +40,15 @@ export class HeaderComponent implements OnInit {
       'noviembre',
       'diciembre',
     ];
-    const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    const days = [
+      'Domingo',
+      'Lunes',
+      'Martes',
+      'Miércoles',
+      'Jueves',
+      'Viernes',
+      'Sábado',
+    ];
     const today = new Date();
     const weekDay = days[today.getDay()];
     const day = today.getDate();

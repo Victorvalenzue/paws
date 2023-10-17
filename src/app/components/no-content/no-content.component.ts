@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { NavigationService } from '../../services/navigation.service';
 
@@ -8,6 +8,7 @@ type NoContentInformation = {
   subtitle: string;
   link: string;
   linkText: string;
+  action: boolean;
 };
 
 @Component({
@@ -17,7 +18,13 @@ type NoContentInformation = {
 })
 export class NoContentComponent implements OnInit {
   @Input()
+  small = false;
+  
+  @Input()
   information: NoContentInformation | undefined;
+
+  @Output()
+  action = new EventEmitter<string>();
 
   constructor(private navigation: NavigationService) {}
 
@@ -25,5 +32,9 @@ export class NoContentComponent implements OnInit {
 
   goto(link: string) {
     this.navigation.navigateByUrl(link);
+  }
+
+  doAction() {
+    this.action.emit('');
   }
 }

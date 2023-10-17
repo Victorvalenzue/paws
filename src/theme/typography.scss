@@ -108,6 +108,16 @@
   );
 }
 
+@mixin body-large-bold {
+  @include text(
+    $font-size-body-large,
+    $line-height-body-large,
+    $font-size-body-large-responsive,
+    $line-height-body-large-responsive,
+    $font-weight-bold
+  );
+}
+
 @mixin body-medium {
   @include text(
     $font-size-body-medium,
@@ -118,10 +128,26 @@
   );
 }
 
+@mixin body-medium-bold {
+  @include text(
+    $font-size-body-medium,
+    $line-height-body-medium,
+    $font-size-body-medium-responsive,
+    $line-height-body-medium-responsive,
+    $font-weight-bold
+  );
+}
+
 @mixin body-small {
-  font-size: pxToRem($font-size-body-small);
+  font-size: pxToRem($font-size-body-small-responsive);
   line-height: pxToRem($line-height-body-small);
   font-weight: $font-weight-regular;
+}
+
+@mixin body-small-bold {
+  font-size: pxToRem($font-size-body-small-responsive);
+  line-height: pxToRem($line-height-body-small);
+  font-weight: $font-weight-bold;
 }
 
 @mixin caption {

@@ -31,11 +31,17 @@
   border-radius: pxToRem(16);
   margin: 0 auto;
   padding: 0 pxToRem(16);
-  border: pxToRem(1) solid $color-default-placeholder;
-
   max-width: pxToRem(580);
 }
 
 .down-footer {
   display: none;
+}
+
+.bordered {
+  border: pxToRem(1) solid $color-default-placeholder;
+}
+
+.end {
+  justify-content: flex-end !important;
 }

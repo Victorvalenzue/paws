@@ -10,20 +10,22 @@ import { loginRoute } from '../../utils/app-routes';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+  ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      this.auth.getAuthState().subscribe((user) => {
-        console.log('hay sesion?', user);
-        const isok = !!user;
+    return new Promise(async (resolve, reject) => {
+      const user = await this.auth.getAuthState();
+      console.log('hay sesion?', user);
+      const isok = !!user;
 
-        if (!isok) {
-          this.router.navigate([loginRoute]);
-        }
+      if (!isok) {
+        this.router.navigate([loginRoute]);
+      }
 
-        resolve(isok);
-      });
+      resolve(isok);
     });
   }
 }

@@ -2,17 +2,23 @@
   <div [class]="cardClasses">
     <div (click)="clickCard()">
       <div class="card-title-section">
+        <ion-text color="medium" *ngIf="overtitle">
+          <h4 class="card-overtitle">{{ overtitle.toString() | uppercase }}</h4>
+        </ion-text>
         <div class="title-left-section">
-          <ion-text color="medium" *ngIf="overtitle">
-            <h4 class="card-overtitle">{{ overtitle.toString() | uppercase }}</h4>
-          </ion-text>
+          <app-thumbnail-profile *ngIf="authorURL" style="margin-right: 4px" [small]="true" [source]="authorURL">
+          </app-thumbnail-profile>
           <ion-text color="dark">
-            <h4 class="card-title">{{ title }}</h4>
+            <h4 class="card-title">{{ title.length > 24 ? (title | slice: 0 : 24) + '...' : title }}</h4>
           </ion-text>
-          <ion-text color="dark" *ngIf="subtitle">
-            <p class="card-body">{{ subtitle }}</p>
-          </ion-text>
+          <ion-icon *ngIf="verified" style="margin-left: 4px" name="paw" color="success"></ion-icon>
         </div>
+        <ion-text color="dark" *ngIf="subtitle">
+          <p *ngIf="restricted" class="card-subtitle">
+            {{ subtitle.length > 16 ? (subtitle | slice: 0 : 16) + '...' : subtitle }}
+          </p>
+          <p *ngIf="!restricted" class="card-subtitle">{{ subtitle }}</p>
+        </ion-text>
         <div class="title-right-section">
           <ng-content select="[title-right-side]"></ng-content>
           <div>
@@ -27,11 +33,16 @@
       </div>
     </div>
     <div class="card-footer-section" *ngIf="withFooter">
-      <div class="left-section">
-        <ng-content select="[footer-left-side]"></ng-content>
+      <div class="full-section">
+        <ng-content select="[footer-full]"></ng-content>
       </div>
-      <div class="right-section">
-        <ng-content select="[footer-right-side]"></ng-content>
+      <div class="separable-footer">
+        <div class="left-section">
+          <ng-content select="[footer-left-side]"></ng-content>
+        </div>
+        <div class="right-section">
+          <ng-content select="[footer-right-side]"></ng-content>
+        </div>
       </div>
     </div>
   </div>

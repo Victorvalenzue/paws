@@ -1,29 +1,35 @@
 import { Injectable } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
+import { doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
+import { getDownloadURL, ref, Storage, StringFormat, uploadString } from '@angular/fire/storage';
 
-import { AlertService } from './alert.service';
-import { NavigationService } from './navigation.service';
+export interface StorageRequest {
+	/**
+    * Should include the file name and extention
+    */
+	fullPath: string;
+	content: string;
+	type: StringFormat;
+}
 
 @Injectable({
-  providedIn: 'root',
+	providedIn: 'root'
 })
 export class StorageService {
-  constructor(private alert: AlertService, private navigation: NavigationService) {}
+	constructor(private storage: Storage) {}
 
-  public set(key: string, value: any) {
-    localStorage.setItem(key, JSON.stringify(value));
-  }
+	async upload(file: StorageRequest) {
+		const storageRef = ref(this.storage, file.fullPath);
+		console.log('💡 storageRef::: ', storageRef)
 
-  public get<T>(key: string): T | null {
-    const value = localStorage.getItem(key);
-
-    return value ? (JSON.parse(value) as T) : null;
-  }
-
-  public clear() {
-    localStorage.clear();
-  }
-
-  private b64ToUTF8(text: string) {
-    return decodeURIComponent(escape(window.atob(text)));
-  }
+		try {
+			const u = await uploadString(storageRef, file.content, 'base64');
+			console.log('💡 u::: ', u)
+			const imageUrl = await getDownloadURL(storageRef);
+			return imageUrl;
+		} catch (e) {
+			console.error(e)
+			return null;
+		}
+	}
 }

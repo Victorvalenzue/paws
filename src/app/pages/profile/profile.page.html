@@ -1,0 +1,74 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons collapse="true" slot="end">
+      <ion-button *ngIf="!fromParam" (click)="dismiss()">Cerrar</ion-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200"
+    (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher> -->
+  <app-page-template>
+    <div class="profile-content">
+      <ng-container *ngIf="working">
+        <div style="width: 100%; text-align: center; margin: 56px 0">
+          <ion-spinner class="simple-spinner" color="primary" name="crescent"> </ion-spinner>
+          <ion-text color="medium">
+            <p class="loading-subtitle">Por favor espere</p>
+          </ion-text>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!working && profile; else NoProfileFound">
+        <!-- start: photo user -->
+        <div class="profile_photo" tappable (click)="changeProfileImage(profile.idField)">
+          <img class="profile_photo_img" [src]="profile?.profileImageURL || defaultImage" alt="Photo user" />
+        </div>
+        <!-- end: photo user -->
+        <div class="fame">
+          <ion-label class="name">{{ profile?.profileName | titlecase | slice:0:25 }}</ion-label><br />
+          <ion-label>{{ profile?.followers }}&nbsp;</ion-label><ion-label color="medium">Seguidores</ion-label>&nbsp;
+          <ion-label>{{ profile?.following }}&nbsp;</ion-label><ion-label color="medium">Siguiendo</ion-label>&nbsp;
+        </div>
+        <ion-list>
+          <ion-item lines="full">
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+            <!-- <ion-label>Correo</ion-label> -->
+            <ion-label color="medium"> {{ profile?.email }} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
+            <ion-label>Miembro desde</ion-label>
+            <ion-label color="medium" slot="end">{{ profile?.createdAt | date }}</ion-label>
+            <!-- <ion-icon name="information-circle" slot="end"></ion-icon> -->
+          </ion-item>
+          <ion-item button detail="false" (click)="logout()">
+            <ion-icon color="primary" slot="start" name="log-out-outline"></ion-icon>
+            <ion-label color="primary">Cerra sesión</ion-label>
+          </ion-item>
+        </ion-list>
+        <form [formGroup]="form" style="padding: 16px;">
+          <div class="form-element">
+            <ion-label position="floating">Intereses</ion-label>
+            <tag-input formControlName="keywords"></tag-input>
+          </div>
+        </form>
+      </ng-container>
+      <ng-template #NoProfileFound>
+        <div *ngIf="!working" class="not-found-content">
+          <ion-img class="not-found-image" [src]="sadImage"></ion-img>
+          <ion-text color="dark">
+            <h1 class="not-found-title">USUARIO <b>NO ENCONTRADO</b></h1>
+          </ion-text>
+        </div>
+      </ng-template>
+    </div>
+  </app-page-template>
+</ion-content>
+<app-action-footer [static]="true" [end]="true" *ngIf="!fromParam">
+  <ion-button color="primary" fill="outline" (click)="dismiss()"> Cerrar </ion-button>
+</app-action-footer>

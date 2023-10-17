@@ -2,14 +2,22 @@
 @import '../../../theme/functions.scss';
 
 .rounded-card {
-  padding: pxToRem(16);
+  padding: pxToRem(8);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-bottom: pxToRem(0);
 
   // @include media-medium {
   //   min-height: pxToRem(243);
   // }
+}
+
+.restricted {
+  max-width: pxToRem(220);
+  min-width: pxToRem(220);
+  min-height: pxToRem(280);
+  max-height: pxToRem(280);
 }
 
 .default {
@@ -57,7 +65,10 @@
 }
 
 .love {
-  background-image: linear-gradient(to top, #dad4ec 0%, #dad4ec 1%, #f3e7e9 100%);
+  // background: rgb(239, 122, 255);
+  // background: linear-gradient(238deg, rgba(239, 122, 255, 0.68531162464986) 0%, rgba(221, 197, 245, 1) 10%, rgba(255, 244, 252, 1) 47%);
+  background: rgb(239, 122, 255);
+  background: linear-gradient(228deg, rgba(239, 122, 255, 0.68531162464986) 0%, rgba(221, 197, 245, 1) 7%, rgba(255, 244, 252, 1) 70%, rgba(255, 255, 255, 1) 95%);
 }
 
 .young {
@@ -69,9 +80,9 @@
 }
 
 .card-title-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
 }
 
 .card-overtitle {
@@ -79,25 +90,35 @@
 }
 
 .card-title {
-  @include title-medium;
+  @include body-medium-bold;
+}
+
+.card-subtitle {
+  margin-top: pxToRem(4);
+  // @include body-large-bold;
+  @include title-large;
 }
 
 .card-body-section {
-  margin-top: pxToRem(16);
-}
-
-.card-body {
-  @include body-medium;
+  margin-top: pxToRem(8);
+  @include body-large;
 }
 
 .card-footer-section {
-  margin-top: pxToRem(16);
+  // margin-top: pxToRem(16);
+}
+
+.separable-footer {
   display: flex;
   justify-content: space-between;
 }
 
+.full-section {
+  width: 100%;
+}
+
 .card-body-extra-section {
-  margin-top: pxToRem(16);
+  margin-top: pxToRem(8);
 }
 
 .card-badge {
@@ -105,9 +126,15 @@
   margin-right: pxToRem(6);
 }
 
+.title-left-section {
+  display: flex;
+  align-items: center;
+}
+
 .title-right-section {
   display: flex;
   align-items: center;
+  justify-content: end;
 }
 
 .card-wrapper {
@@ -117,5 +144,6 @@
 }
 
 .bordered {
-  border: pxToRem(1) solid var(--ion-color-light);
+  // border: pxToRem(1) solid var(--ion-color-light);
+  border: pxToRem(1) solid rgba(116, 116, 116, 0.433);
 }

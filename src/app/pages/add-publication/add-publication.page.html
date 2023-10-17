@@ -1,0 +1,103 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons collapse="true" slot="start">
+      <ion-button (click)="dismiss()">Cancelar</ion-button>
+    </ion-buttons>
+    <ion-title>Nueva publicación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-page-template>
+    <div class="profile-content">
+      <ng-container *ngIf="working">
+        <div style="width: 100%; text-align: center; margin: 56px 0">
+          <ion-spinner class="simple-spinner" color="primary" name="crescent"> </ion-spinner>
+          <ion-text color="medium">
+            <p class="loading-subtitle">Por favor espere</p>
+          </ion-text>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!working; else Error">
+        <div class="register-content">
+          <ion-grid>
+            <ion-row class="register-row">
+              <ion-col size="12" size-md="6" size-lg="5" size-xl="5">
+                <form [formGroup]="form">
+                  <div class="form-element">
+                    <div class="profile_photo" tappable (click)="changePubImage()" *ngIf="uploadedImage">
+                      <img class="profile_photo_img" [src]="uploadedImage" alt="Photo user" />
+                    </div>
+                    <ion-button color="tertiary" (click)="changePubImage()" shape="round" fill="outline">
+                      <ion-icon slot="start" name="image-outline"></ion-icon>
+                      Seleccionar foto
+                    </ion-button>
+                  </div>
+                  <div class="form-element">
+                    <ion-label position="floating">Tipo de publicación</ion-label>
+                    <ion-select
+                      formControlName="type"
+                      okText="Confirmar"
+                      cancelText="Cancelar"
+                      placeholder="Seleccione"
+                      [interfaceOptions]="{ header: 'Seleccione tipo de publicación'}"
+                      class="event-selector"
+                    >
+                      <ion-select-option *ngFor="let s of pubTypes" [value]="s.id">{{ s.value }} </ion-select-option>
+                    </ion-select>
+                  </div>
+                  <div class="form-element">
+                    <ion-label position="floating">Mascota</ion-label>
+                    <ion-select
+                      formControlName="pet"
+                      okText="Confirmar"
+                      cancelText="Cancelar"
+                      placeholder="Seleccione"
+                      [interfaceOptions]="{ header: 'Seleccione mascota'}"
+                      class="event-selector"
+                    >
+                      <ion-select-option *ngFor="let s of pets" [value]="s">{{ s.profileName }} </ion-select-option>
+                    </ion-select>
+                  </div>
+                  <div class="form-element">
+                    <ion-label position="floating">Título</ion-label>
+                    <ion-input
+                      style="text-align: start"
+                      type="text"
+                      formControlName="name"
+                      placeholder="Título"
+                    ></ion-input>
+                  </div>
+                  <div class="form-element">
+                    <ion-label position="floating">Contenido</ion-label>
+                    <ion-textarea
+                      style="text-align: start"
+                      type="mail"
+                      formControlName="bio"
+                      placeholder="Contenido"
+                    ></ion-textarea>
+                  </div>
+                  <div class="form-element">
+                    <ion-label position="floating">Palabras clave</ion-label>
+                    <tag-input formControlName="keywords"></tag-input>
+                  </div>
+                </form>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ng-container>
+      <ng-template #Error>
+        <div *ngIf="!working && error" class="not-found-content">
+          <ion-img class="not-found-image" [src]="sadImage"></ion-img>
+          <ion-text color="dark">
+            <h1 class="not-found-title">Ha ocurrido un error inesperado</h1>
+          </ion-text>
+        </div>
+      </ng-template>
+    </div>
+  </app-page-template>
+</ion-content>
+<app-action-footer [static]="true" [end]="true" [withBorder]="false">
+  <ion-button color="primary" type="submit" (click)="publish()" [disabled]="form?.invalid">Publicar</ion-button>
+</app-action-footer>

@@ -1,0 +1,21 @@
+@import "../../../theme/mixins.scss";
+@import "../../../theme/functions.scss";
+
+.activity-image {
+    max-width: pxToRem(140);
+    margin: pxToRem(16);
+
+    &.small {
+        max-width: pxToRem(60);
+        margin: pxToRem(4);
+    }
+}
+
+.form-element {
+    margin-top: pxToRem(12);
+}
+
+.register-content {
+    margin: pxToRem(8);
+    padding-bottom: pxToRem(140);
+}

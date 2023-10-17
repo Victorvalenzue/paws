@@ -1,0 +1,99 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons collapse="true" slot="start">
+      <ion-button (click)="dismiss()">Cancelar</ion-button>
+    </ion-buttons>
+    <ion-title>Nueva mascota</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-page-template>
+    <div class="main-content">
+      <ng-container *ngIf="working">
+        <div style="width: 100%; text-align: center; margin: 56px 0">
+          <ion-spinner class="simple-spinner" color="primary" name="crescent"> </ion-spinner>
+          <ion-text color="medium">
+            <p class="loading-subtitle">Por favor espere</p>
+          </ion-text>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!working; else Error">
+        <div class="register-content">
+          <ion-grid>
+            <ion-row class="register-row">
+              <ion-col size="12" size-md="6" size-lg="5" size-xl="5">
+                <form [formGroup]="form">
+                  <div class="form-element">
+                    <div class="profile_photo" tappable (click)="changeProfileImage()">
+                      <img
+                        class="profile_photo_img"
+                        [src]="uploadedImage || profileImage"
+                        alt="Photo user"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-element">
+                    <ion-label position="floating">Nombre</ion-label>
+                    <ion-input
+                      style="text-align: start"
+                      type="text"
+                      formControlName="name"
+                      placeholder="Nombre"
+                    ></ion-input>
+                  </div>
+                  <div class="form-element">
+                    <ion-label position="floating">Biografía</ion-label>
+                    <ion-textarea
+                      style="text-align: start"
+                      type="mail"
+                      formControlName="bio"
+                      placeholder="Biografía"
+                    ></ion-textarea>
+                  </div>
+                  <div class="form-element">
+                    <ion-label position="floating">Especie</ion-label>
+                    <ion-select
+                      formControlName="species"
+                      okText="Confirmar"
+                      cancelText="Cancelar"
+                      placeholder="Seleccione"
+                      [interfaceOptions]="{ header: 'Seleccione especie'}"
+                      class="event-selector"
+                    >
+                      <ion-select-option *ngFor="let s of species" [value]="s.id">{{ s.value }} </ion-select-option>
+                    </ion-select>
+                  </div>
+                  <div class="form-element">
+                    <ion-label position="floating">Sexo</ion-label>
+                    <ion-select
+                      formControlName="sex"
+                      okText="Confirmar"
+                      cancelText="Cancelar"
+                      placeholder="Seleccione"
+                      [interfaceOptions]="{ header: 'Seleccione sexo'}"
+                      class="event-selector"
+                    >
+                      <ion-select-option *ngFor="let s of sex" [value]="s.id">{{ s.value }} </ion-select-option>
+                    </ion-select>
+                  </div>
+                </form>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ng-container>
+      <ng-template #Error>
+        <div *ngIf="!working && error" class="not-found-content">
+          <ion-img class="not-found-image" [src]="sadImage"></ion-img>
+          <ion-text color="dark">
+            <h1 class="not-found-title">Ha ocurrido un error inesperado</h1>
+          </ion-text>
+        </div>
+      </ng-template>
+    </div>
+  </app-page-template>
+</ion-content>
+<app-action-footer [static]="true" [end]="true" [withBorder]="false">
+  <ion-button color="primary" type="submit" (click)="register()" [disabled]="form?.invalid"> Registrar </ion-button>
+</app-action-footer>

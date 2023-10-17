@@ -9,3 +9,5 @@ export const DEFAULT_LOADER = 1500;
 export const SHORT_LOADER = 500;
 
 export const ALLOWED_FORMATS = ['pdf', 'jpg', 'jpeg', 'png'];
+
+export const USER_CACHE_SESSION = 'USER_CACHE_SESSION';

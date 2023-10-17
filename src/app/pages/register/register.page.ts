@@ -9,6 +9,7 @@ import { emailAlreadyInUse, errorRegister, successRegister } from '../../../util
 import { landingRoute, loginRoute } from '../../../utils/app-routes';
 
 import { registerTexts } from '../../../utils/texts';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-register',
@@ -25,6 +26,7 @@ export class RegisterPage implements OnInit {
     private authService: AuthService,
     private alertService: AlertService,
     private navigation: NavigationService,
+    private loading: LoadingService,
   ) {
     this.buildForm();
   }
@@ -39,23 +41,23 @@ export class RegisterPage implements OnInit {
     this.navigation.navigateByUrl(loginRoute);
   }
 
-  register() {
+  async register() {
     const value = {
+      name: this.form.value.name,
       email: this.form.value.email,
       password: this.form.value.password,
     };
-
-    this.authService.signUp(value.email, value.password).subscribe(res => {
-      console.log('💡 res::: ', res);
-      this.buildForm();
-      this.gotoLoginPage();
-    }, (error) => {
-      this.alertService.presentToast(errorRegister);
-    });
+    await this.loading.present();
+    const user = await this.authService.register(value);
+    console.log(user);
+    this.buildForm();
+    await this.loading.dismiss();
+    this.gotoLoginPage();
   }
 
   private buildForm() {
     this.form = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
     });

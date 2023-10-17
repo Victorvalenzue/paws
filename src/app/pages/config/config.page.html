@@ -1,10 +1,10 @@
 <app-header [information]="headerInformation"> </app-header>
 <ion-content [fullscreen]="true">
-  <app-layout [visible]="!isLoading">
+  <app-layout>
     <div>
-      <app-card title="Cuenta" color="glass" [tapable]="true" (click)="signOut()">
+      <app-card title="" color="glass" [tapable]="true" (click)="signOut()">
         <div title-right-side>
-          <ion-button color="dark" fill="outline">Cerra sesión</ion-button>
+          <ion-button color="dark" fill="outline" style="padding-bottom: 8px;">Cerra sesión</ion-button>
         </div>
       </app-card>
     </div>

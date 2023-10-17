@@ -9,6 +9,7 @@ import { COMPANY_LOGO } from 'src/utils/assets';
 import { errorSignIn } from '../../../utils/alerts';
 import { homeRoute, registerRoute } from '../../../utils/app-routes';
 import { loginTexts } from '../../../utils/texts';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -25,11 +26,21 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private alertService: AlertService,
     private navigation: NavigationService,
+    private loading: LoadingService,
   ) {
     this.buildForm();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.continueGoogleAuth().then((user) => {
+      console.log('💡 continueGoogleAuth user::: ', user);
+      if (!user) {
+        console.log('no llega user');
+        return;
+      }
+      this.gotoHomePage();
+    });
+  }
 
   gotoHomePage() {
     this.navigation.navigateByUrl(homeRoute);
@@ -50,17 +61,44 @@ export class LoginPage implements OnInit {
     if (!this.form) {
       return;
     }
+    if (this.form?.invalid) {
+      return;
+    }
     const value = {
       email: this.form.value.email,
       password: this.form.value.password,
     };
 
-    this.authService.signIn(value.email, value.password).subscribe(res => {
-      console.log('💡 res::: ', res)
-      this.buildForm();
+    try {
+      await this.loading.present();
+      const user = await this.authService.login(value);
+      console.log(user);
+      await this.loading.dismiss();
+      if (!user) {
+        this.alertService.presentToast(errorSignIn);
+        return;
+      }
       this.gotoHomePage();
-    }, (error) => {
+    } catch (error) {
+      console.error(JSON.stringify(error));
       this.alertService.presentToast(errorSignIn);
-    });
+    }
+  }
+
+  async loginWithGoogle() {
+    try {
+      await this.loading.present();
+      const user = await this.authService.GoogleAuth();
+      console.log('loginWithGoogle::: ', user);
+      await this.loading.dismiss();
+      // if (!user) {
+      //   this.alertService.presentToast(errorSignIn);
+      //   return;
+      // }
+      this.gotoHomePage();
+    } catch (error) {
+      console.error(JSON.stringify(error));
+      this.alertService.presentToast(errorSignIn);
+    }
   }
 }

@@ -7,12 +7,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ActionFooterComponent implements OnInit {
   @Input() static = true;
+  @Input() withBorder = true;
+  @Input() marginBottom = false;
+  @Input() end = false;
   @Input() customClass = '';
-  classes = `button-section ${this.customClass}`;
+  classes = `button-section ${this.withBorder ? 'bordered' : ''} ${this.end ? 'end' : ''} ${this.customClass}`;
 
   constructor() {}
 
   ngOnInit() {
-    this.classes = `button-section ${this.customClass}`;
+    this.classes = `button-section ${this.withBorder ? 'bordered' : ''} ${this.end ? 'end' : ''} ${this.customClass}`;
   }
 }

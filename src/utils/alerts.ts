@@ -19,6 +19,25 @@ export const successRegister: ToastOptions = {
   ],
 };
 
+export const successAlert: ToastOptions = {
+  duration: 3000,
+  message: 'Datos guardados exitosamente',
+  position: 'top',
+  buttons: [
+    {
+      side: 'start',
+      icon: 'happy-outline',
+      handler: () => {},
+    },
+    {
+      side: 'end',
+      icon: 'close',
+      role: 'cancel',
+      handler: () => {},
+    },
+  ],
+};
+
 export const emailAlreadyInUse: ToastOptions = {
   duration: 3000,
   color: 'warning',
@@ -79,46 +98,6 @@ export const errorSignIn: ToastOptions = {
   ],
 };
 
-export const errorBuildingRecipe: ToastOptions = {
-  color: 'danger',
-  duration: 3000,
-  message: 'Ha ocurrido un error inesperado',
-  position: 'top',
-  buttons: [
-    {
-      side: 'start',
-      icon: 'sad-outline',
-      handler: () => {},
-    },
-    {
-      side: 'end',
-      icon: 'close',
-      role: 'cancel',
-      handler: () => {},
-    },
-  ],
-};
-
-export const sameRecipeSelected: ToastOptions = {
-  color: 'light',
-  duration: 4000,
-  message: 'Debe seleccionar recetas distintas',
-  position: 'top',
-  buttons: [
-    {
-      side: 'start',
-      icon: 'information-circle-outline',
-      handler: () => {},
-    },
-    {
-      side: 'end',
-      icon: 'close',
-      role: 'cancel',
-      handler: () => {},
-    },
-  ],
-};
-
 export const errorWithServices: ToastOptions = {
   color: 'danger',
   duration: 3000,
@@ -138,3 +117,23 @@ export const errorWithServices: ToastOptions = {
     },
   ],
 };
+
+export const errorToast: (text: string) => ToastOptions = (text: string) => ({
+  color: 'danger',
+  duration: 3000,
+  message: text,
+  position: 'top',
+  buttons: [
+    {
+      side: 'start',
+      icon: 'sad-outline',
+      handler: () => {},
+    },
+    {
+      side: 'end',
+      icon: 'close',
+      role: 'cancel',
+      handler: () => {},
+    },
+  ],
+});

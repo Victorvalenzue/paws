@@ -2,20 +2,24 @@
 
 .header-content-background {
   max-width: pxToRem(1200);
-  margin: 0 auto;
   // padding: pxToRem(8) pxToRem(16);
   background: var(--ion-background-color);
-  padding-top: pxToRen(8);
+  padding-top: pxToRem(8);
+  margin: 0 auto;
+}
+
+.with-border {
+  border-bottom: 1px solid $color-default-border;
 }
 
 .header-content {
   width: 100%;
-  padding: 0;
   display: flex;
   text-align: left;
-  justify-content: flex-start;
   background: transparent;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 pxToRem(8);
 }
 
 .image-section {

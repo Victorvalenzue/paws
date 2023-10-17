@@ -11,9 +11,12 @@ export class CardComponent implements OnInit {
   @Input() subtitle?: string;
   @Input() badge?: string | number;
   @Input() tapable = false;
+  @Input() verified = false;
   @Input() withBody = false;
+  @Input() restricted = false;
   @Input() withFooter = false;
   @Input() withBorder = false;
+  @Input() authorURL?: string;
   @Input() color?:
     | 'light'
     | 'orange'
